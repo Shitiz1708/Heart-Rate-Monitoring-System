@@ -23,25 +23,22 @@ except AttributeError:
 
 
 class Ui_GUI(QtWidgets.QMainWindow):
-
     def __init__(self):
         QtWidgets.QMainWindow.__init__(self)
         self.setupUi(self)
-        self.default()
         self.webcam = WebCam()
+        self.default()
     
     def default(self):
-        self.start.clicked.connect(self.startProcess)
+        # self.start.clicked.connect(self.startProcess)
+        self.webcam.start()
         timer = QTimer(self)
         timer.setInterval(int(1000/30))
-        timer.timeout.connect(self.get_frame)
+        timer.timeout.connect(self.update_frame)
         timer.start()
-
-    def setupCamera(self):
-        self.cap = cv2.VideoCapture(0)
     
-    def get_frame(self):
-        ret,frame = self.cap.read()
+    def update_frame(self):
+        frame = self.webcam.getFrame()
         image = QImage(frame, *frame.shape[1::-1], QImage.Format_RGB888).rgbSwapped()
         pixmap = QPixmap.fromImage(image)
         self.label.setPixmap(pixmap)
