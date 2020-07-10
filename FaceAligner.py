@@ -6,15 +6,14 @@ from mtcnn.mtcnn import MTCNN
 class FaceAligner:
     def __init__(self, desiredLeftEye=(0.35, 0.35),
         desiredFaceWidth=256, desiredFaceHeight=None):
-        self.detector = MTCNN()
         self.desiredLeftEye = desiredLeftEye
         self.desiredFaceWidth = desiredFaceWidth
         self.desiredFaceHeight = desiredFaceHeight
         if self.desiredFaceHeight is None:
             self.desiredFaceHeight = self.desiredFaceWidth
-    def align(self, image):
+
+    def align(self, image,result):
         try:
-            result = self.detector.detect_faces(image)
             leftEyeCenter = result[0]["keypoints"]["left_eye"]
             rightEyeCenter = result[0]["keypoints"]["right_eye"]
             
@@ -44,4 +43,4 @@ class FaceAligner:
                 flags=cv2.INTER_CUBIC)
             return output
         except:
-            output = np.zeros(())
+            pass
