@@ -37,7 +37,7 @@ class Ui_GUI(QtWidgets.QMainWindow):
         
     def onStartPressed(self):
         timer = QTimer(self)
-        timer.setInterval(int(1000/30))
+        # timer.setInterval(int(1000/30))
         timer.timeout.connect(self.update_frame)
         timer.start()
     
