@@ -21,5 +21,6 @@ We use 3D ResNet instead of 2D as using 3D ResNet we can map the fast changes in
 1. In determining heart rate while exercising using a smart phone trainer
 2. In Emotion detection, high heart rate usually displays excitement and fear.
 
-##Demo
+## Demo
+![Demo](ezgif.com-crop.gif)
 
